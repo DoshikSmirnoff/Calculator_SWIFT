@@ -7,5 +7,21 @@
 
 import Foundation
 
-print("Hello, World!")
-
+func data_entry(a: Int, b: Int, sign: String) -> Int {
+    var a = readLine()
+    var b = readLine()
+    var sign = readLine()
+    
+    
+    
+    if sign == "+" {
+        return a + b
+    } else if sign == "-" {
+        return a - b
+    } else if sign == "*" {
+        return a * b
+    } else if sign == "/" {
+        return a / b
+    }
+    
+}
