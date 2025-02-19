@@ -12,7 +12,13 @@ func data_entry(a: Int, b: Int, sign: String) -> Int {
     var b = readLine()
     var sign = readLine()
     
-    
+    if let int_a = a and && let int_b = b {
+        print(int_a)
+        print(int_b)
+    }
+    if var int_a = Int(a) && int_b = Int(b) {
+        
+    }
     
     if sign == "+" {
         return a + b
@@ -24,4 +30,14 @@ func data_entry(a: Int, b: Int, sign: String) -> Int {
         return a / b
     }
     
+}
+
+import Foundation
+
+let line = readLine()
+if let newLine = line {
+ print(newLine)
+ if let int = Int(newLine) {
+  print(int)
+ }
 }
