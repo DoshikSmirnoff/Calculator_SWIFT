@@ -9,7 +9,7 @@ import Foundation
 
 
 
-func dataEntry(a: Int, b: Int, sign: String) -> Int? {
+func dataEntry(a: Float, b: Float, sign: Character) -> Float? {
     
    if sign == "+" {
         return a + b
@@ -40,12 +40,11 @@ func dataEntry(a: Int, b: Int, sign: String) -> Int? {
 //}
 
 while true {
-    var a = Int(readLine() ?? "0")
-    var b = Int(readLine() ?? "0")
-    var sign = readLine()
+    var a = readLine()
     
-    if let aLast = a, let bLast = b, let signLast = sign {
-        let result = dataEntry(a: aLast, b: bLast, sign: signLast)
+    if let aLast = a {
+        let resultOfPars = pars(a: aLast)
+        let result = dataEntry(a: resultOfPars.0, b: resultOfPars.2, sign: resultOfPars.1)
         if let resultLast = result {
             print("Ваш результат равен: \(resultLast)!")
         } else {
@@ -67,4 +66,53 @@ while true {
             print("Неверный ответ!")
         }
     }
+}
+
+// "12+13"
+
+func isDigit(a: Character) -> Bool {
+    let numbers = "0123456789"
+    
+    for number in numbers {
+        if number == a {
+            return true
+        }
+    }
+    return false
+}
+
+func isOperator(a: Character) -> Bool {
+    let allOperators = "+-//*"
+    
+    for oper in allOperators {
+        if oper == a {
+            return true
+        }
+    }
+    return false
+}
+
+func pars(a: String) -> (Float, Character, Float) {
+    
+    var numberOne = ""
+    var operatorOne = Character("!")
+    var numberTwo = ""
+    
+    var resultOne : Float = 0
+    var resultTwo : Float = 0
+    
+    for char in a {
+        if isDigit(a: char) {
+            numberOne.append(char)
+        } else if isOperator(a: char) {
+            operatorOne = char
+            resultOne = Float(numberOne) ?? 0
+            var indexOne = a.firstIndex(of: char)!
+            var indexAfter = a.index(after: indexOne)
+            let numberTwo = a[indexAfter...]
+            resultTwo = Float(numberTwo) ?? 0
+            break
+        }
+    }
+    return (resultOne, operatorOne, resultTwo)
 }
