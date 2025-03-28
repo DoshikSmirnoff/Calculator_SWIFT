@@ -97,7 +97,6 @@ func pars(a: String) -> (Float, Character, Float) {
     
     var numberOne = ""
     var operatorOne = Character("!")
-    let numberTwo = ""
     
     var resultOne : Float = 0
     var resultTwo : Float = 0
