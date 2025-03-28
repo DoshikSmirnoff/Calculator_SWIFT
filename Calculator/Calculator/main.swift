@@ -40,10 +40,11 @@ func dataEntry(a: Float, b: Float, sign: Character) -> Float? {
 //}
 
 while true {
-    var a = readLine()
+    let a = readLine()
     
     if let aLast = a {
-        let resultOfPars = pars(a: aLast)
+        let improveStr = improveString(str: aLast)
+        let resultOfPars = pars(a: improveStr)
         let result = dataEntry(a: resultOfPars.0, b: resultOfPars.2, sign: resultOfPars.1)
         if let resultLast = result {
             print("Ваш результат равен: \(resultLast)!")
@@ -55,7 +56,7 @@ while true {
     
     print("Если хотите продолжить, введите Yes, если хотите завершить - No")
     
-    var response = readLine()
+    let response = readLine()
     
     if let responseLast = response {
         if responseLast == "Yes" {
@@ -96,7 +97,7 @@ func pars(a: String) -> (Float, Character, Float) {
     
     var numberOne = ""
     var operatorOne = Character("!")
-    var numberTwo = ""
+    let numberTwo = ""
     
     var resultOne : Float = 0
     var resultTwo : Float = 0
@@ -107,12 +108,26 @@ func pars(a: String) -> (Float, Character, Float) {
         } else if isOperator(a: char) {
             operatorOne = char
             resultOne = Float(numberOne) ?? 0
-            var indexOne = a.firstIndex(of: char)!
-            var indexAfter = a.index(after: indexOne)
+            let indexOne = a.firstIndex(of: char)!
+            let indexAfter = a.index(after: indexOne)
             let numberTwo = a[indexAfter...]
             resultTwo = Float(numberTwo) ?? 0
             break
         }
     }
     return (resultOne, operatorOne, resultTwo)
+}
+
+func improveString(str: String) -> String {
+    
+    var resultStr = ""
+    let letters = "0123456789+-/*"
+    
+    for char in str {
+        if letters.contains(where: { $0 == char }) {
+            resultStr.append(char)
+        }
+    }
+    
+    return resultStr
 }
