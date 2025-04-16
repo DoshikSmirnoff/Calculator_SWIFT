@@ -22,7 +22,7 @@ class Checker {
     
     /// Метод проверяет, является ли символ математическим оператором
     func isOperator(a: Character) -> Bool {
-        let allOperators = "+-//*"
+        let allOperators = "+-//*()"
         
         for oper in allOperators {
             if oper == a {
